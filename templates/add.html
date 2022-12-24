@@ -1,0 +1,37 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="/static/css/styles.css">
+{% endblock %}
+
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+      <!-- This is where your WTForm will go -->
+      <form method="post" action="{{ url_for('add_cafe') }}" novalidate>
+        {{form.csrf_token}}
+        {{ form.cafe.label}} : {{form.cafe()}}<br>
+        {{form.locationurl.label}}:{{form.locationurl()}}<br>
+        {{form.open.label}}:{{form.open()}}<br>
+        {{form.close.label}}:{{form.close()}}<br>
+        {{form.coffee_rating.label}}:{{form.coffee_rating()}}<br>
+        {{form.wifi_rating.label}}:{{form.wifi_rating()}}<br>
+        {{form.power_rating.label}}:{{form.power_rating()}}<br>
+        {{form.submit}}
+      </form>
+
+	  <p class="space-above"><a href="{{url_for('cafes')}}">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
